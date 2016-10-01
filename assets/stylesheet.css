@@ -18,6 +18,7 @@ body{
     background: #f6f6f6;
     border-radius: 5px;
     box-shadow: #bebebe 0 0 5px 3px;
+    opacity: 0.95;
 }
 
 h1,
