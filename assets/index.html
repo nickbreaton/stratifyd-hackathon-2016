@@ -19,11 +19,13 @@
           <h1 id='title'>Chaos in the Queen City</h1>
           <h2 id='title'>#CharlotteProtest</h2>
         </div>
+
         <div id='map'></div>
         <script type="text/javascript" src="us-states.js"></script>
 
         <script type="text/javascript">
 
+          // Create map with zoom disabled
         	var map = L.map('map', { zoomControl: false, scrollWheelZoom: false}).setView([37.8, -96], 4);
 
         	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamVyZW15Ym9oYW5ub24iLCJhIjoiY2l0cXBjYTB6MDEyaDJ0bXMxbXg4cGpoZyJ9.p6YZaRKKUc-0aSiIezcTTA', {
@@ -31,7 +33,7 @@
         		id: 'mapbox.light'
         	}).addTo(map);
 
-        	// get color depending on population density value
+        	// Get color depending on population density value
         	function getColor(d) {
         		return d > 4 ? '#3a89d9' :
                    d > 3 ? '#5196db' :
@@ -45,6 +47,7 @@
         						 '#d90024';
         	}
 
+          // Border Line Styling
         	function style(feature) {
         		return {
         			weight: 2,
@@ -56,7 +59,7 @@
         		};
         	}
 
-          // Interaction
+          // Interaction highlight feature
           function highlightFeature(e) {
             var layer = e.target;
 
@@ -97,7 +100,7 @@
         		onEachFeature: onEachFeature
         	}).addTo(map);
 
-          //Custom info
+          //Custom Information on hover
           var info = L.control();
 
           info.onAdd = function (map) {
@@ -106,10 +109,10 @@
               return this._div;
           };
 
-          // method that we will use to update the control based on feature properties passed
+          // Method that we will use to update the control based on feature properties passed
           info.update = function (props) {
               this._div.innerHTML = '<h4>#CharlotteProtest Sentiment Value</h4>' +  (props ?
-                  '<b>' + props.name + '</b><br />' + props.density + ' sentiment value / mi<sup>2</sup>'
+                  '<b>' + props.name + '</b><br />' + props.density.toPrecision(2) + ' sentiment value'
                   : 'Hover over a state');
           };
 
@@ -123,6 +126,7 @@
         	legend.onAdd = function (map) {
 
         		var div = L.DomUtil.create('div', 'info legend'),
+              // Range of possible sentiment values
         			grades = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
         			labels = [];
 
@@ -134,7 +138,9 @@
               }
               return div;
         	};
+          // Default value of what day it is
           var whatDayIsIt = day21
+          // Function to refresh map when new date is selcted
           function updateDay(day){
             if(day != whatDayIsIt){
               map.eachLayer(function (layer) {
@@ -159,6 +165,7 @@
         	legend.addTo(map);
         </script>
 
+        // Date slider to update map
         <script type="text/javascript">
           window.addEventListener('load', function(){
               new Dragdealer('date-slider', {
