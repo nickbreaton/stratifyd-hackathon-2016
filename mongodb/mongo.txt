@@ -1,0 +1,2 @@
+mongo ec2-52-41-222-95.us-west-2.compute.amazonaws.com:27017/admin -u  hackathon_admin -p HardToTypeButEasyToRemember2016
+mongoimport --host ec2-52-41-222-95.us-west-2.compute.amazonaws.com:27017 --username hackathon_admin --password HardToTypeButEasyToRemember2016 --authenticationDatabase admin --db cltprotest --collection protest --file data1.json
