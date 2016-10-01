@@ -39,7 +39,7 @@
                    d > 3 ? '#5196db' :
                    d > 2 ? '#6ba3db' :
                    d > 1 ? '#90b6db' :
-                   d >= 0 ? '#9c9c9c' :
+                   d == 0 ? '#9c9c9c' :
                    d > -1 ? '#d695a0' :
                    d > -2 ? '#d17786' :
                    d > -3 ? '#d35066' :
@@ -132,9 +132,20 @@
 
               // loop through our density intervals and generate a label with a colored square for each interval
               for (var i = 0; i < grades.length; i++) {
+                // Temporary fix
+                if(i == 4){
+                  div.innerHTML +=
+                      '<i style="background:' + getColor(grades[i] + 2) + '"></i> ' +
+                      grades[i] + '<br>'
+                } else if (i == 5) {
+                  div.innerHTML +=
+                      '<i style="background:' + getColor(grades[i]) + '"></i> ' +
+                      grades[i] + '<br>'
+                } else {
                   div.innerHTML +=
                       '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
                       grades[i] + '<br>'
+                }
               }
               return div;
         	};
