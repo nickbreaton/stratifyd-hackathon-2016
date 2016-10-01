@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "csvtojson": "^1.0.2",
+    "mongodb": "^2.2.10
+  }
+}
