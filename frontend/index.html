@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="leaflet/leaflet.css" />
+        <script src="leaflet/leaflet.js"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheet.css">
+        <script src="dragdealer-master/src/dragdealer.js"></script>
+        <link rel="stylesheet" type="text/css" href="dragdealer-master/src/dragdealer.css">
+        <script src="jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        <div id='title-bar'>
+          <h1 id='title'>#CharlotteProtest</h1>
+        </div>
+        <div id='map'></div>
+        <script type="text/javascript" src="us-states.js"></script>
+
+        <script type="text/javascript">
+
+        	var map = L.map('map', { zoomControl: false, scrollWheelZoom: false}).setView([37.8, -96], 4);
+
+        	L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiamVyZW15Ym9oYW5ub24iLCJhIjoiY2l0cXBjYTB6MDEyaDJ0bXMxbXg4cGpoZyJ9.p6YZaRKKUc-0aSiIezcTTA', {
+        		maxZoom: 18,
+        		id: 'mapbox.light'
+        	}).addTo(map);
+
+          L.geoJson(statesData).addTo(map);
+
+        	// get color depending on population density value
+        	function getColor(d) {
+        		return d > 4 ? '#3a89d9' :
+                   d > 3 ? '#5196db' :
+                   d > 2 ? '#6ba3db' :
+                   d > 1 ? '#90b6db' :
+                   d > 0 ? '#9c9c9c' :
+                   d > -1 ? '#d695a0' :
+                   d > -2 ? '#d17786' :
+                   d > -3 ? '#d35066' :
+        			     d > -4 ? '#d62643' :
+        						 '#d90024';
+        	}
+
+        	function style(feature) {
+        		return {
+        			weight: 2,
+        			opacity: 1,
+        			color: 'white',
+        			dashArray: '3',
+        			fillOpacity: 0.7,
+        			fillColor: getColor(feature.properties.density)
+        		};
+        	}
+
+          L.geoJson(statesData, {style: style}).addTo(map);
+
+          // Interaction
+          function highlightFeature(e) {
+            var layer = e.target;
+
+            layer.setStyle({
+                weight: 5,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.7
+            });
+
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+            info.update(layer.feature.properties);
+          }
+
+          var geojson;
+
+          function resetHighlight(e) {
+        		geojson.resetStyle(e.target);
+            info.update();
+        	}
+
+        	function zoomToFeature(e) {
+        		map.fitBounds(e.target.getBounds());
+        	}
+
+        	function onEachFeature(feature, layer) {
+        		layer.on({
+        			mouseover: highlightFeature,
+        			mouseout: resetHighlight,
+        			click: zoomToFeature
+        		});
+        	}
+
+        	geojson = L.geoJson(statesData, {
+        		style: style,
+        		onEachFeature: onEachFeature
+        	}).addTo(map);
+
+          //Custom info
+          var info = L.control();
+
+          info.onAdd = function (map) {
+              this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+              this.update();
+              return this._div;
+          };
+
+          // method that we will use to update the control based on feature properties passed
+          info.update = function (props) {
+              this._div.innerHTML = '<h4>#CharlotteProtest Sentiment Value</h4>' +  (props ?
+                  '<b>' + props.name + '</b><br />' + props.density + ' sentiment value / mi<sup>2</sup>'
+                  : 'Hover over a state');
+          };
+
+          info.addTo(map);
+
+          //Custom Legend Control
+        	map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
+
+        	var legend = L.control({position: 'bottomright'});
+
+        	legend.onAdd = function (map) {
+
+        		var div = L.DomUtil.create('div', 'info legend'),
+        			grades = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5],
+        			labels = [];
+
+              // loop through our density intervals and generate a label with a colored square for each interval
+              for (var i = 0; i < grades.length; i++) {
+                  div.innerHTML +=
+                      '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                      grades[i] + '<br>'
+              }
+              return div;
+        	};
+
+        	legend.addTo(map);
+        </script>
+
+        <script type="text/javascript">
+          window.addEventListener('load', function(){
+              new Dragdealer('date-slider', {
+                animationCallback: function(x,y) {
+                  $('#date-slider .date-slider-value').text(function(){
+                    var mark = Math.round(x * 100);
+                    switch(true){
+                      case (mark >= 0 && mark <= 17):
+                        return '9/20';
+                        break;
+                      case (mark >= 18 && mark <= 34):
+                        return '9/21';
+                        break;
+                      case (mark >= 34 && mark <= 50):
+                        return '9/22';
+                        break;
+                      case (mark >= 51 && mark <= 66):
+                        return '9/23';
+                        break;
+                      case (mark >= 67 && mark <= 83):
+                        return '9/24';
+                        break;
+                      case (mark >= 84 && mark <= 100):
+                        return '9/25';
+                        break;
+                    }
+                  });
+                }
+              });
+          });
+        </script>
+
+        <script type="text/javascript">
+
+        </script>
+
+        <div id ='tools'>
+          <div id="date-slider" class="dragdealer">
+            <div class="handle red-bar"><span class="date-slider-value"></span></div>
+          </div>
+        </div>
+    </body>
+    </div>
+</html>
