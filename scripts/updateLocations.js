@@ -1,8 +1,6 @@
 module.exports = function updateLocations(locations, tweets) {
   function averages(tweets) {
-    tweetPromises = tweets.map(tweet => metadata(tweet));
-
-    return Promise.all(tweetPromises)
+    return Promise.resolve(tweets)
       .then(tweets => {
         return tweets.reduce(function (states, tweet) {
           if (!states[tweet.state])
@@ -22,13 +20,10 @@ module.exports = function updateLocations(locations, tweets) {
     .then(states => {
       locations.forEach(location => {
         const stateName = location.properties.name;
-        location.properties.density = states[stateName].average;
+        if (states[stateName]) {
+          location.properties.density = states[stateName].average;
+        }
       });
       return locations;
     });
 }
-
-updateLocations(locations, tweets)
-  .then(updatedLocations => {
-    console.log(updatedLocations);
-  });
