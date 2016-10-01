@@ -2,11 +2,18 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
 
-const tweets = require('../data/tweets/raw.json');
+let tweets = require('../data/tweets/raw.json');
 const states = require('../data/states.json')
 let i = 0;
-tweetsPromises = tweets.slice(0, 2500).map(tweet => {
-  return fetch(`http://ec2-52-34-226-77.us-west-2.compute.amazonaws.com/nominatim/search.php?q=${tweet.location || 'London'}&format=json`)
+
+tweets = tweets.filter(tweet => tweet.location);
+
+tweetsPromises = tweets.map(tweet => {
+  if (tweet.location.replace) tweet.location = tweet.location.replace(/[^a-zA-Z ]/g, "");
+  return fetch(`http://ec2-52-34-226-77.us-west-2.compute.amazonaws.com/nominatim/search.php?q=${tweet.location}&format=json`)
+    .then(response => {
+      return response
+    })
     .then(response => response.json())
     .then(data => {
       return new Promise(resolve => {
@@ -22,15 +29,13 @@ tweetsPromises = tweets.slice(0, 2500).map(tweet => {
     })
     .then(state => {
       tweet.state = state;
-      console.log(i++);
+      console.log(tweet.state, i++);
+      fs.appendFileSync(path.resolve(__dirname, '../data/tweets/processed.json'), (JSON.stringify(tweet) + ',\n'));
       return tweet;
+    })
+    .catch(err => {
+      i++
+      errored.push(tweet);
+      console.log(err, tweet);
     });
 });
-
-Promise.all(tweetsPromises)
-  .then(tweets => {
-    console.log(tweets.length);
-    tweets = tweets.filter(t => t.state !== null);
-    console.log(tweets.length);
-    fs.writeFileSync(path.resolve(__dirname, '../data/tweets/processed1.json'), JSON.stringify(tweets))
-  });
