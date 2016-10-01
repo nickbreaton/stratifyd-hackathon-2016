@@ -1,11 +1,10 @@
-# stratifyd-hackathon-2016
+# Stratifyd Hackathon 2016
 
-Using Stratifyd's text analysis software *Signals* to collect and interpret tweets, we created a map tracking a small selection from the hashtag "#charlotteprotests" across multiple days, displaying in each state the average sentiment score created by *Signals* to express the opinions of tweeters as the protests went on.
+Using Stratifyd's text analysis software *Signals* we created a map that tracks tweets from the hashtag "#CharlotteProtests". The map displays each states' average sentiment score over a period of time to express the opinions of tweeters as the protests went on.
 
-## Tools Used
-- JavaScript/NodeJS
-- HTML
-- MongoDB
-- Signals
+## Technologies Used
+- Signals by Stratifyd
+- JavaScript
+- leafleft js
 
 ## 
