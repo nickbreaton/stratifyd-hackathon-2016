@@ -10,17 +10,35 @@ body{
 }
 
 #title-bar {
-    height: 5vh;
-    text-align: center;
+    position: fixed;
+    text-align: left;
+    z-index: 100;
+    padding: 20px;
+    margin: 10px;
+    background: #f6f6f6;
+    border-radius: 5px;
+    box-shadow: #bebebe 0 0 5px 3px;
 }
 
-#title{
+h1,
+h2 {
+  font-family: "Open Sans";
+  font-weight: bold;
   font-size: 20px;
 }
 
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  opacity: 0.5;
+}
+
 #map {
-    height: 90vh;
+    height: 95vh;
     width: auto;
+    z-index: 0;
 }
 
 .info {
