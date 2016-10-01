@@ -6,8 +6,10 @@ const moment = require('moment');
 const fs = require('fs');
 const path = require('path');
 
-[1, 2, 3, 4, 5].forEach(function (i) {
+[5].forEach(function (i) {
+  console.log(allTweets.length);
   let tweets = filterDataByDate(`2016-09-2${i}T00:00`, `2016-09-2${i+1}T00:00`, allTweets);
+  console.log(tweets.length);
 
   // default 0
   states.features.forEach(feature => feature.properties.density = 0);
@@ -17,7 +19,7 @@ const path = require('path');
       states.features = features;
       fs.writeFileSync(
         path.join(__dirname, `../assets/states/2016-09-2${i}.js`),
-        `var day${i} = ${JSON.stringify(states)}`
+        `var day2${i} = ${JSON.stringify(states)}`
       );
     });
 
@@ -29,7 +31,6 @@ const path = require('path');
       formattedDate = moment(data[i].date).format('ddd MMM D YYYY h:mm:ss')
       formattedDate = moment(formattedDate).unix()
       if (formattedDate > formattedStartDate && formattedDate < formattedEndDate) {
-        console.log(data[i]);
         result.push(data[i])
       }
     }
