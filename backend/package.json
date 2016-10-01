@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "csvtojson": "^1.0.2",
-    "moment": "^2.15.1",
-    "mongodb": "^2.2.10"
-  }
-}
