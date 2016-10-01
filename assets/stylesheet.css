@@ -94,6 +94,7 @@ h2 {
   right: 90px;
   bottom: 0;
   background: none;
+  cursor: pointer;
 }
 
 #date-bar {
@@ -117,6 +118,16 @@ h2 {
   background-color: #e14a63;
   border-radius: 100%;
   z-index: 1000;
+}
+
+#dot {
+  width: 20px;
+  height: 20px;
+  background: #e14a63;
+  border-radius: 100%;
+  top: 17px;
+  left: 12px;
+  position: absolute;
 }
 
 #text {

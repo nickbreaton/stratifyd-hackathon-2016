@@ -162,8 +162,7 @@
         <script type="text/javascript">
           window.addEventListener('load', function(){
               new Dragdealer('date-slider', {
-                speed: 0.1,
-                loose: false,
+                steps: 5,
                 animationCallback: function(x,y) {
                   $('#date-slider .date-slider-value').text(function(){
                     var mark = Math.round(x * 100);
@@ -205,6 +204,11 @@
             <div id="text">9/21</div>
             <div id="date-slider" class="dragdealer">
               <div id="date-bar"></div>
+              <div id="dot"></div>
+              <div id="dot" style="left: 178px;"></div>
+              <div id="dot" style="left: 348px;"></div>
+              <div id="dot" style="left: 524px;"></div>
+              <div id="dot" style="left: 690px;"></div>
               <div class="handle red-bar" id="red-bar"><span class="date-slider-value"></span></div>
             </div>
           </div>
