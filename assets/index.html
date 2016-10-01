@@ -147,22 +147,19 @@
                   $('#date-slider .date-slider-value').text(function(){
                     var mark = Math.round(x * 100);
                     switch(true){
-                      case (mark >= 0 && mark <= 17):
-                        return '9/20';
-                        break;
-                      case (mark >= 18 && mark <= 34):
+                      case (mark >= 0 && mark <= 20):
                         return '9/21';
                         break;
-                      case (mark >= 34 && mark <= 50):
+                      case (mark >= 21 && mark <= 40):
                         return '9/22';
                         break;
-                      case (mark >= 51 && mark <= 66):
+                      case (mark >= 41 && mark <= 60):
                         return '9/23';
                         break;
-                      case (mark >= 67 && mark <= 83):
+                      case (mark >= 61 && mark <= 80):
                         return '9/24';
                         break;
-                      case (mark >= 84 && mark <= 100):
+                      case (mark >= 81 && mark <= 100):
                         return '9/25';
                         break;
                     }
