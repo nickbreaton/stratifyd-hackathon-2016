@@ -160,6 +160,8 @@
         <script type="text/javascript">
           window.addEventListener('load', function(){
               new Dragdealer('date-slider', {
+                speed: 0.1,
+                loose: false,
                 animationCallback: function(x,y) {
                   $('#date-slider .date-slider-value').text(function(){
                     var mark = Math.round(x * 100);
@@ -189,10 +191,6 @@
                 }
               });
           });
-        </script>
-
-        <script type="text/javascript">
-
         </script>
 
         <div id ='tools'>
