@@ -17,7 +17,7 @@ const path = require('path');
       states.features = features;
       fs.writeFileSync(
         path.join(__dirname, `../assets/states/2016-09-2${i}.js`),
-        `var day${i} = ${JSON.stringify(states)}`
+        `var day2${i} = ${JSON.stringify(states)}`
       );
     });
 
