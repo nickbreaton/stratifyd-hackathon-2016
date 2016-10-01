@@ -55,6 +55,17 @@ body{
   width: 100%;
 }
 
+#date-slider{
+  height: 100%;
+  background-color: #f5f8fa;
+}
+
+#red-bar {
+  position: relative;
+  border-radius: 10px;
+  top: 15%;
+}
+
 .date-slider-value {
   font-weight: bolder;
   height: 100%;
