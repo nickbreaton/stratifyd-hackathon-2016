@@ -170,22 +170,27 @@
                     switch(true){
                       case (mark >= 0 && mark <= 20):
                         updateDay(day21);
+                        $('#text').text('9/21')
                         return '9/21';
                         break;
                       case (mark >= 21 && mark <= 40):
                         updateDay(day22);
+                        $('#text').text('9/22')
                         return '9/22';
                         break;
                       case (mark >= 41 && mark <= 60):
                         updateDay(day23);
+                        $('#text').text('9/23')
                         return '9/23';
                         break;
                       case (mark >= 61 && mark <= 80):
                         updateDay(day24);
+                        $('#text').text('9/24')
                         return '9/24';
                         break;
                       case (mark >= 81 && mark <= 100):
                         updateDay(day25);
+                        $('#text').text('9/25')
                         return '9/25';
                         break;
                     }
@@ -196,8 +201,12 @@
         </script>
 
         <div id ='tools'>
-          <div id="date-slider" class="dragdealer">
-            <div class="handle red-bar" id="red-bar"><span class="date-slider-value"></span></div>
+          <div id="slider-outer">
+            <div id="text">9/21</div>
+            <div id="date-slider" class="dragdealer">
+              <div id="date-bar"></div>
+              <div class="handle red-bar" id="red-bar"><span class="date-slider-value"></span></div>
+            </div>
           </div>
         </div>
     </body>

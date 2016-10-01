@@ -75,17 +75,57 @@ h2 {
   width: 100%;
 }
 
-#date-slider{
-  height: 0%;
-  background-color: #f5f8fa;
+#slider-outer {
+  width: 800px;
+  height: 55px;
+  position: fixed;
+  left: 10px;
+  bottom: 10px;
+  background: #f6f6f6;
+  border-radius: 5px;
+  box-shadow: #bebebe 0 0 5px 3px;
+  opacity: 0.95;
+}
+
+#date-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 90px;
+  bottom: 0;
+  background: none;
+}
+
+#date-bar {
+  height: 5px;
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  top: 25px;
+  z-index: 500;
+  background-color: #e14a63;
+  border-radius: 10px;
 }
 
 #red-bar {
+  top: 10px;
+  left: 10px;
+  width: 35px;
+  height: 35px;
+  color: rgba(0,0,0,0);
   position: absolute;
-  border-radius: 10px;
-  bottom: 0;
-  box-shadow: 2px 1px 1px #888888;
   background-color: #e14a63;
+  border-radius: 100%;
+  z-index: 1000;
+}
+
+#text {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-family: "Open Sans";
+  font-weight: bold;
+  font-size: 25px;
 }
 
 .date-slider-value {
