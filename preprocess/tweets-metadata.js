@@ -6,7 +6,7 @@ let tweets = require('../data/tweets/raw.json');
 const states = require('../data/states.json')
 let i = 0;
 
-tweets = tweets.filter(tweet => tweet.location);
+tweets = tweets.filter(tweet => tweet.location);//Filters Out tweets that contain no location data
 
 tweetsPromises = tweets.map(tweet => {
   if (tweet.location.replace) tweet.location = tweet.location.replace(/[^a-zA-Z ]/g, "");
