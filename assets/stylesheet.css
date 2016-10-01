@@ -6,6 +6,7 @@
 }
 
 body{
+  overflow: hidden;
   background-color: #f5f8fa;
 }
 
