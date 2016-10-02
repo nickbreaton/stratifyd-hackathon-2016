@@ -4,10 +4,14 @@ Using Stratifyd's text analysis software *Signals* we created a map that tracks 
 
 This project was created in a 24-hour hackathon by [Shantanu RajeNimbalkar](https://github.com/dopeamine), [Chris Smith](https://github.com/Kirbstomper), [Jeremy Bohannon](https://github.com/jeremybohannon), and [Nick Breaton](https://github.com/nickbreaton).
 
+Working example at https://nickbreaton.github.io/stratifyd-hackathon-2016/
+
 ### Technologies Used
 - Signals by Stratifyd
 - Leafleft JS
 
-<image src="https://raw.githubusercontent.com/nickbreaton/stratifyd-hackathon-2016/master/.github/example.png" />
+<a href="https://nickbreaton.github.io/stratifyd-hackathon-2016/">
+  <image src="https://raw.githubusercontent.com/nickbreaton/stratifyd-hackathon-2016/master/.github/example.png" />
+</a>
 
 
