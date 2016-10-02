@@ -7,3 +7,7 @@ This project was created in a 24-hour hackathon by [Shantanu RajeNimbalkar](http
 ### Technologies Used
 - Signals by Stratifyd
 - Leafleft JS
+
+<image src="https://raw.githubusercontent.com/nickbreaton/stratifyd-hackathon-2016/master/.github/example.png" />
+
+
